@@ -19,21 +19,19 @@ let Tlist_Use_Right_Window=1
 let Tlist_Exit_OnlyWindow=1
 
 "let g:miniBufExplorerMoreThanOne=0
-"let g:miniBufExplMapWindowNavVim = 1
-"let g:miniBufExplMapWindowNavArrows = 1
-"let g:miniBufExplMapCTabSwitchBufs = 1
-"let g:miniBufExplModSelTarget = 1 
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1 
 
 let NERDTreeWinSize = 22
 map <F5> :NERDTree<CR>
 map <F6> :Tlist<CR>
 map <F7> :tprevious<CR>
 map <F8> :tnext<CR>
-map <F9> :!/usr/bin/ctags -R --exclude=.git --exclude=log * --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <F9> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 nnoremap <silent> <F10> :A<CR>
 set tags=tags;
-
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
 "Markdown language syntax settings
 au BufNewFile,BufRead *.rb set softtabstop=2 | set shiftwidth=2  
@@ -55,14 +53,15 @@ let mapleader=","
 " to directory of current file - http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 "
-map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
-map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
+map <leader>f :FufFile<cr>
 nnoremap <leader><leader> <c-^>
 
 "utf-8 encoding
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,chinese
+
+
 
 "gb* encoding
 "set encoding=gb2312

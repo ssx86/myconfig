@@ -1,4 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/home/zhangss/project/masaka'
-let g:netrw_dirhist_2='/home/zhangss/.vim'
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/larry/code/chihuoshuo/app/models'
+let g:netrw_dirhist_2='/home/larry/code/chihuoshuo'
+let g:netrw_dirhist_3='/home/zhangss/project/truelove/spec/factories'
+let g:netrw_dirhist_4='/home/zhangss/Downloads'
+let g:netrw_dirhist_5='/home/zhangss/.vim'

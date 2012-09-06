@@ -121,7 +121,7 @@ function! s:Init()
   endif
   " <% %>
   if &ft == "eruby"
-    inoremap  <buffer> <C-X>- <%<Space><Space><Space>%><Esc>3hi
+    inoremap  <buffer> <C-X>- <%<Space><Space>%><Esc>3hi
     inoremap  <buffer> <C-X>_ <C-V><NL><Esc>I<%<Space><Esc>A<Space>%><Esc>F<NL>s
   elseif &ft == "cf"
     inoremap  <buffer> <C-X>- <cf><Left>

@@ -11,6 +11,7 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set nobackup
+set paste
 
 filetype plugin indent on
 

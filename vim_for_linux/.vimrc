@@ -1,5 +1,6 @@
-set t_Co=256
-:colorscheme wombat256mod
+set t_Co=258
+set guifont=Consolas:h14:b:cANSI
+:colorscheme desert
 syntax on
 set nu
 set autoindent
@@ -68,3 +69,28 @@ set fileencodings=ucs-bom,utf-8,chinese
 "set encoding=gb2312
 "set fileencoding=chinese
 "set fileencodings=chinese,ucs-bom,utf-8
+set encoding=utf-8  
+  
+set fileencodings=utf-8,chinese,latin-1  
+  
+if has("win32")  
+  
+ set fileencoding=chinese  
+  
+else  
+  
+ set fileencoding=utf-8  
+  
+endif  
+  
+"解决菜单乱码  
+  
+source $VIMRUNTIME/delmenu.vim  
+  
+source $VIMRUNTIME/menu.vim  
+  
+"解决consle输出乱码  
+  
+language messages zh_CN.utf-8 
+
+

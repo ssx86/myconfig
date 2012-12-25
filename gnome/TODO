@@ -1,0 +1,30 @@
+要启用，可用借助 dconf-editor 工具，打开 dconf-editor，展开 org.gnome.shell ，将 user-theme 插件加入到键值 enabled-extensions 中
+
+['user-theme@gnome-shell-extensions.gcampax.github.com', 'poweroptions@fpmurphy.com']
+
+当然，user-theme 插件需要自己下载
+
+
+sudo pacman -S gnome-shell-extension-user-theme
+
+
+
+
+启用了插件后，重启 gnome-shell
+
+
+<Alt+F2>
+
+r<Enter>
+
+
+
+gnome-shell-theme-atolm.noarch
+
+gnome-shell-theme-dark-glass.noarch
+
+gnome-shell-theme-gaia.noarch
+
+gnome-shell-theme-orta.noarch
+
+gnome-shell-theme-smooth-inset.noarch

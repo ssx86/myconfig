@@ -3,7 +3,11 @@
 " -----------------     Date: 2014-05-16 16:03
 " -----------------    https://github.com/ruchee/vimrc
 
+set clipboard+=unnamed			" 共享剪切板
 
+"Set mapleader  
+let mapleader = ","  
+let g:mapleader = ","
 
 " 判断工作地点（根据指定路径的文件是否存在判断）
 if filereadable("~/.atCompany") || filereadable("D:/atCompany.txt")
@@ -212,19 +216,20 @@ au BufRead,BufNewFile *.txt  setlocal ft=txt
 if g:isWIN
     if g:isGUI
         colorscheme blackboard
-        set guifont=Consolas:h14
+        set guifont=Consolas:h12
     endif
 else
     if g:isGUI
         colorscheme blackboard
-        set guifont=Consolas\ 14
+        set guifont=Consolas\ 12
     else
         colorscheme blackboard
-        set guifont=Consolas\ 14
+        set guifont=Consolas\ 12
     endif
 endif
 
 
+set ignorecase
 set backspace=2              " 设置退格键可用
 set autoindent               " 自动对齐
 set ai!                      " 设置自动缩进
@@ -235,7 +240,6 @@ set mouse=a                  " 启用鼠标
 set ruler                    " 右下角显示光标位置的状态行
 set incsearch                " 开启实时搜索功能
 set hlsearch                 " 开启高亮显示结果
-set nowrapscan               " 搜索到文件两端时不重新搜索
 set nocompatible             " 关闭兼容模式
 set hidden                   " 允许在有未保存的修改时切换缓冲区
 set autochdir                " 设定文件浏览器目录为当前目录
@@ -247,10 +251,8 @@ set writebackup              " 设置无备份文件
 set autoread                 " 当文件在外部被修改时自动更新该文件
 set nobackup                 " 不生成备份文件
 set noswapfile               " 不生成交换文件
-set list                     " 显示特殊字符，其中Tab使用高亮~代替，尾部空白使用高亮点号代替
-set listchars=tab:\~\ ,trail:.
 set expandtab                " 将Tab自动转化成空格 [需要输入真正的Tab键时，使用 Ctrl+V + Tab]
-"set showmatch               " 显示括号配对情况
+set showmatch                " 显示括号配对情况
 "set nowrap                  " 设置不自动换行
 
 syntax enable                " 打开语法高亮
@@ -294,15 +296,15 @@ endif
 
 " ======= 引号 && 括号自动匹配 ======= "
 
-:inoremap ( ()<ESC>i
-:inoremap ) <c-r>=ClosePair(')')<CR>
-:inoremap { {}<ESC>i
-:inoremap } <c-r>=ClosePair('}')<CR>
-:inoremap [ []<ESC>i
-:inoremap ] <c-r>=ClosePair(']')<CR>
-:inoremap " ""<ESC>i
-:inoremap ' ''<ESC>i
-:inoremap ` ``<ESC>i
+"":inoremap ( ()<ESC>i
+"":inoremap ) <c-r>=ClosePair(')')<CR>
+"":inoremap { {}<ESC>i
+"":inoremap } <c-r>=ClosePair('}')<CR>
+"":inoremap [ []<ESC>i
+"":inoremap ] <c-r>=ClosePair(']')<CR>
+"":inoremap " ""<ESC>i
+"":inoremap ' ''<ESC>i
+"":inoremap ` ``<ESC>i
 
 function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
@@ -506,29 +508,29 @@ let g:syntastic_cpp_compiler_options = '-std=c++11'
 
 " ======= 自定义快捷键 ======= "
 
-" Ctrl + H            光标移当前行行首
-imap <c-h> <ESC>I
-
-" Ctrl + J            光标移下一行行首
-imap <c-j> <ESC><Down>I
-
-" Ctrl + K            光标移上一行行尾
-imap <c-k> <ESC><Up>A
-
-" Ctrl + L            光标移当前行行尾
-imap <c-l> <ESC>A
-
-" Alt  + H            光标左移一格
-imap <m-h> <Left>
-
-" Alt  + J            光标下移一格
-imap <m-j> <Down>
-
-" Alt  + K            光标上移一格
-imap <m-k> <Up>
-
-" Alt  + L            光标右移一格
-imap <m-l> <Right>
+"" Ctrl + H            光标移当前行行首
+"imap <c-h> <ESC>I
+"
+"" Ctrl + J            光标移下一行行首
+"imap <c-j> <ESC><Down>I
+"
+"" Ctrl + K            光标移上一行行尾
+"imap <c-k> <ESC><Up>A
+"
+"" Ctrl + L            光标移当前行行尾
+"imap <c-l> <ESC>A
+"
+"" Alt  + H            光标左移一格
+"imap <m-h> <Left>
+"
+"" Alt  + J            光标下移一格
+"imap <m-j> <Down>
+"
+"" Alt  + K            光标上移一格
+"imap <m-k> <Up>
+"
+"" Alt  + L            光标右移一格
+"imap <m-l> <Right>
 
 " \c                  复制至公共剪贴板
 vmap <leader>c "+y
@@ -540,6 +542,11 @@ nmap <leader>a <ESC>ggVG"+y<ESC>
 imap <leader>v <ESC>"+p
 nmap <leader>v "+p
 vmap <leader>v "+p
+
+map <c-h> <c-w>h
+map <c-l> <c-w>l
+map <c-j> <c-w>j
+map <c-k> <c-w>k
 
 " \bb                 按=号对齐代码 [Tabular插件]
 nmap <leader>bb :Tab /=<CR>
@@ -691,10 +698,10 @@ func! Compile_Run_Code()
         exec "!php %:t"
     elseif &filetype == "python"
         exec "!python %:t"
-    elseif &filetype == "ruby"
+    elseif &fjletype == "ruby"
         exec "!ruby %:t"
     elseif &filetype == "elixir"
-        exec "!elixir %:t"
+        exec j!elixir %:t"
     elseif &filetype == "julia"
         exec "!julia %:t"
     elseif &filetype == "dart"
@@ -751,3 +758,6 @@ let blog.template_ext     = '.html'
 let blog.auto_export      = 1
 
 let g:vimwiki_list = [blog]
+
+" 全屏模式
+map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>

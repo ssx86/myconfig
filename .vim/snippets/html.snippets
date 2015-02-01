@@ -1,190 +1,189 @@
-# Some useful Unicode entities
-# Non-Breaking Space
-snippet nbs
-	&nbsp;
-# ←
-snippet left
-	&#x2190;
-# →
-snippet right
-	&#x2192;
-# ↑
-snippet up
-	&#x2191;
-# ↓
-snippet down
-	&#x2193;
-# ↩
-snippet return
-	&#x21A9;
-# ⇤
-snippet backtab
-	&#x21E4;
-# ⇥
-snippet tab
-	&#x21E5;
-# ⇧
-snippet shift
-	&#x21E7;
-# ⌃
-snippet control
-	&#x2303;
-# ⌅
-snippet enter
-	&#x2305;
-# ⌘
-snippet command
-	&#x2318;
-# ⌥
-snippet option
-	&#x2325;
-# ⌦
-snippet delete
-	&#x2326;
-# ⌫
-snippet backspace
-	&#x232B;
-# ⎋
-snippet escape
-	&#x238B;
-# Generic Doctype
-snippet doctype HTML 4.01 Strict
-	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN""
-	"http://www.w3.org/TR/html4/strict.dtd">
-snippet doctype HTML 4.01 Transitional
-	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""
-	"http://www.w3.org/TR/html4/loose.dtd">
-snippet doctype HTML 5
+snippet doctype 文档声明
 	<!DOCTYPE HTML>
-snippet doctype XHTML 1.0 Frameset
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-snippet doctype XHTML 1.0 Strict
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-snippet doctype XHTML 1.0 Transitional
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-snippet doctype XHTML 1.1
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-# HTML Doctype 4.01 Strict
-snippet docts
-	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN""
-	"http://www.w3.org/TR/html4/strict.dtd">
-# HTML Doctype 4.01 Transitional
-snippet doct
-	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""
-	"http://www.w3.org/TR/html4/loose.dtd">
-# HTML Doctype 5
-snippet doct5
-	<!DOCTYPE HTML>
-# XHTML Doctype 1.0 Frameset
-snippet docxf
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
-# XHTML Doctype 1.0 Strict
-snippet docxs
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-# XHTML Doctype 1.0 Transitional
-snippet docxt
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-# XHTML Doctype 1.1
-snippet docx
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+	${0}
+snippet ie      针对IE的处理
+	<!--[if lt IE ${1:9}]>${0}
+	<![endif]-->
+snippet !       HTML注释
+	<!-- ${0} -->
 snippet html
+	<html${1}>
+	    ${0}
+	</html>
+snippet all
+	<!DOCTYPE HTML>
 	<html>
-	${1}
+	    <head>
+	        <title>${0}</title>
+	    </head>
+	    <body>
+	    </body>
 	</html>
-snippet xhtml
-	<html xmlns="http://www.w3.org/1999/xhtml">
-	${1}
-	</html>
-snippet body
-	<body>
-		${1}
-	</body>
-snippet head
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8"`Close()`>
-
-		<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
-		${2}
+# 头部信息
+snippet head    头部
+	<head${1}>
+	    ${0}
 	</head>
-snippet title
-	<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>${2}
-snippet script
-	<script type="text/javascript" charset="utf-8">
-		${1}
-	</script>${2}
-snippet scriptsrc
-	<script src="${1}.js" type="text/javascript" charset="utf-8"></script>${2}
-snippet style
-	<style type="text/css" media="${1:screen}">
-		${2}
-	</style>${3}
-snippet base
-	<base href="${1}" target="${2}"`Close()`>
-snippet r
-	<br`Close()[1:]`>
-snippet div
-	<div id="${1:name}">
-		${2}
+snippet title   标题
+	<title>${0}</title>
+snippet meta    页面信息
+	<meta content="text/html; charset=utf-8"${0} />
+# 主体信息
+snippet body    主体
+	<body${1}>
+	    ${0}
+	</body>
+snippet script. 外部脚本
+	<script src="${1}"${0}></script>
+snippet script  内部脚本
+	<script>
+	    ${0}
+	</script>
+snippet link    外部样式表
+	<link rel="stylesheet" type="text/css" href="${1}"${0} />
+snippet style   内部样式表
+	<style type="text/css">
+	    ${0}
+	</style>
+snippet import  链接外部样式表
+	@import url("${0}")
+snippet icon    指定网站小图标
+	<link rel="shortcut icon" href="${1}"${0} />
+# 重量级标签
+snippet span    组合行内元素
+	<span${1}>${0}</span>
+snippet span.   组合行内元素 [换行]
+	<span${1}>
+	    ${0}
+	</span>
+snippet div     内容块
+	<div${1}>${0}</div>
+snippet div.    内容块 [换行]
+	<div${1}>
+	    ${0}
 	</div>
-# Embed QT Movie
-snippet movie
-	<object width="$2" height="$3" classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B"
-	 codebase="http://www.apple.com/qtactivex/qtplugin.cab">
-		<param name="src" value="$1"`Close()`>
-		<param name="controller" value="$4"`Close()`>
-		<param name="autoplay" value="$5"`Close()`>
-		<embed src="${1:movie.mov}"
-			width="${2:320}" height="${3:240}"
-			controller="${4:true}" autoplay="${5:true}"
-			scale="tofit" cache="true"
-			pluginspage="http://www.apple.com/quicktime/download/"
-		`Close()[1:]`>
-	</object>${6}
-snippet fieldset
-	<fieldset id="$1">
-		<legend>${1:name}</legend>
-
-		${3}
-	</fieldset>
-snippet form
-	<form action="${1:`Filename('$1_submit')`}" method="${2:get}" accept-charset="utf-8">
-		${3}
-
-
-	<p><input type="submit" value="Continue &rarr;"`Close()`></p>
+snippet table   表格
+	<table${1}>
+	    ${0}
+	</table>
+snippet tr      表格行
+	<tr${1}>${0}</tr>
+snippet tr.     表格行 [换行]
+	<tr${1}>
+	    ${0}
+	</tr>
+snippet th      表头单元格
+	<th${1}>${0}</th>
+snippet th.     表头单元格 [换行]
+	<th${1}>
+	    ${0}
+	</th>
+snippet td      标准单元格
+	<td${1}>${0}</td>
+snippet td.     标准单元格 [换行]
+	<td${1}>
+	    ${0}
+	</td>
+snippet dl      定义列表
+	<dl${1}>${0}</dl>
+snippet dl.     定义列表 [换行]
+	<dl${1}>
+	    ${0}
+	</dl>
+snippet dt      定义列表项目
+	<dt${1}>${0}</dt>
+snippet dt.     定义列表项目 [换行]
+	<dt${1}>
+	    ${0}
+	</dt>
+snippet dd      描述列表项目
+	<dd${1}>${0}</dd>
+snippet dd.     描述列表项目 [换行]
+	<dd${1}>
+	    ${0}
+	</dd>
+snippet form    表单
+	<form${1}>
+	    ${0}
 	</form>
+snippet input   输入框
+	<input type="${1}"${0} />
+snippet submit  提交按钮
+	<input type="submit"${1}>${0}</button>
+snippet label   标签
+	<label${1}>${0}</label>
+snippet button  按钮
+	<button type="button"${1}>${0}</button>
+snippet img     图片
+	<img src="${1}"${0} />
+# 常用标签
+snippet a       链接
+	<a href="${1}"${2}>${0}</a>
+snippet b       换行标签
+	<br/>${0}
+snippet hr      水平线
+	<hr/>${0}
 snippet h1
-	<h1 id="${1:heading}">${2:$1}</h1>
-snippet input
-	<input type="${1:text/submit/hidden/button}" name="${2:some_name}" value="${3}"`Close()`>${4}
-snippet label
-	<label for="${2:$1}">${1:name}</label><input type="${3:text/submit/hidden/button}" name="${4:$2}" value="${5}" id="${6:$2}"`Close()`>${7}
-snippet link
-	<link rel="${1:stylesheet}" href="${2:/css/master.css}" type="text/css" media="${3:screen}" charset="utf-8"`Close()`>${4}
-snippet mailto
-	<a href="mailto:${1:joe@example.com}?subject=${2:feedback}">${3:email me}</a>
-snippet meta
-	<meta name="${1:name}" content="${2:content}"`Close()`>${3}
-snippet opt
-	<option value="${1:option}">${2:$1}</option>${3}
-snippet optt
-	<option>${1:option}</option>${2}
-snippet select
-	<select name="${1:some_name}" id="${2:$1}">
-		<option value="${3:option}">${4:$3}</option>
-	</select>${5}
-snippet table
-	<table border="${1:0}">
-		<tr><th>${2:Header}</th></tr>
-		<tr><th>${3:Data}</th></tr>
-	</table>${4}
-snippet textarea
-	<textarea name="${1:Name}" rows="${2:8}" cols="${3:40}">${4}</textarea>${5}
+	<h1>${0}</h1>
+snippet h2
+	<h2>${0}</h2>
+snippet h3
+	<h3>${0}</h3>
+snippet h4
+	<h4>${0}</h4>
+snippet h5
+	<h5>${0}</h5>
+snippet h6
+	<h6>${0}</h6>
+snippet ul      无序列表
+	<ul${1}>${0}</ul>
+snippet ul.     无序列表 [换行]
+	<ul${1}>
+	    ${0}
+	</ul>
+snippet ol      有序列表
+	<ol${1}>${0}</ol>
+snippet ol.     有序列表 [换行]
+	<ol${1}>
+	    ${0}
+	</ol>
+snippet li      列表项目
+	<li${1}>${0}</li>
+snippet li.     列表项目 [换行]
+	<li${1}>
+	    ${0}
+	</li>
+# 效果标签
+snippet strong  强调文本，程度比em更高
+	<strong>${0}</strong>
+snippet em      强调文本，通常表现为斜体
+	<em>${0}</em>
+# HTML5新增标签
+snippet section
+	<section${1}>
+	    ${0}
+	</section>
+snippet article
+	<article${1}>
+	    ${0}
+	</article>
+snippet aside
+	<aside${1}>
+	    ${0}
+	</aside>
+snippet header
+	<header${1}>
+	    ${0}
+	</header>
+snippet footer
+	<footer${1}>
+	    ${0}
+	</footer>
+snippet nav
+	<nav${1}>
+	    ${0}
+	</nav>
+snippet canvas
+	<canvas${1}>
+	    ${0}
+	</canvas>

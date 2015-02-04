@@ -234,7 +234,6 @@ set backspace=2              " 设置退格键可用
 set autoindent               " 自动对齐
 set ai!                      " 设置自动缩进
 set smartindent              " 智能自动缩进
-set relativenumber           " 开启相对行号
 set nu!                      " 显示行号
 set mouse=a                  " 启用鼠标
 set ruler                    " 右下角显示光标位置的状态行

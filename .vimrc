@@ -9,22 +9,6 @@ set clipboard+=unnamed			" 共享剪切板
 let mapleader = ","  
 let g:mapleader = ","
 
-" 判断工作地点（根据指定路径的文件是否存在判断）
-if filereadable("~/.atCompany") || filereadable("D:/atCompany.txt")
-    let g:atCompany = 1
-else
-    let g:atCompany = 0
-endif
-
-" 针对不同的使用环境进行具体配置
-if g:atCompany
-    au BufRead,BufNewFile *.html setlocal ft=php
-    set path+=G:/Ruchee/MinGW/i686-pc-mingw32/include
-    set tags+=G:/Ruchee/code/work/Local_Crawler/trunk/Src/tags
-else
-    set path+=D:/Ruchee/MinGW/i686-pc-mingw32/include
-endif
-
 
 " ---------- Ctrl系按键 ----------
 "
@@ -433,11 +417,6 @@ let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs  = 1
 let g:miniBufExplModSelTarget       = 1
 
-" Tlist               调用TagList
-let Tlist_Show_One_File        = 1             " 只显示当前文件的tags
-let Tlist_Exit_OnlyWindow      = 1             " 如果Taglist窗口是最后一个窗口则退出Vim
-let Tlist_Use_Right_Window     = 1             " 在右侧窗口中显示
-let Tlist_File_Fold_Auto_Close = 1             " 自动折叠
 
 " LoadTemplate        根据文件后缀自动加载模板
 if g:isWIN
@@ -492,17 +471,6 @@ let g:indent_guides_guide_size            = 1  " 指定对齐线的尺寸
 " AirLine             彩色状态栏
 let g:airline_theme = 'badwolf'                " 设置主题
 
-" Syntastic           语法检查
-let g:syntastic_check_on_open = 1              " 默认开启
-let g:syntastic_mode_map      = {'mode': 'active',
-            \'active_filetypes':  [],
-            \'passive_filetypes': ['html', 'css', 'xhtml', 'groovy', 'scala', 'clojure', 'racket', 'eruby', 'slim', 'jade', 'scss', 'less']
-            \}                                 " 指定不需要检查的语言 [主要是因为开启这些语言的语法检查会妨碍到正常的工作]
-" 自定义编译器和编译参数
-let g:syntastic_c_compiler = 'gcc'
-let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_c_compiler_options = '-std=c11'
-let g:syntastic_cpp_compiler_options = '-std=c++11'
 
 
 " ======= 自定义快捷键 ======= "
@@ -556,8 +524,6 @@ nmap <leader>bn :Tab /
 " \nt                 打开NERDTree窗口，在左侧栏显示
 nmap <leader>nt :NERDTree<CR>
 
-" \tl                 打开Taglist/TxtBrowser窗口，在右侧栏显示
-nmap <leader>tl :Tlist<CR><c-l>
 
 " \ff                 打开文件搜索窗口，在状态栏显示 [ctrlp.vim插件]
 nmap <leader>ff :CtrlP<CR>
@@ -596,167 +562,3 @@ func! RemoveTabs()
         exec "%s/	/ /g"
     end
 endfunc
-
-imap <leader>rt <ESC>:call RemoveTabs()<CR>
-nmap <leader>rt :call RemoveTabs()<CR>
-vmap <leader>rt <ESC>:call RemoveTabs()<CR>
-
-" \th                 一键生成与当前编辑文件同名的HTML文件 [不输出行号]
-imap <leader>th <ESC>:set nonumber<CR>:set norelativenumber<CR><ESC>:TOhtml<CR><ESC>:w %:r.html<CR><ESC>:q<CR>:set number<CR>:set relativenumber<CR>
-nmap <leader>th <ESC>:set nonumber<CR>:set norelativenumber<CR><ESC>:TOhtml<CR><ESC>:w %:r.html<CR><ESC>:q<CR>:set number<CR>:set relativenumber<CR>
-vmap <leader>th <ESC>:set nonumber<CR>:set norelativenumber<CR><ESC>:TOhtml<CR><ESC>:w %:r.html<CR><ESC>:q<CR>:set number<CR>:set relativenumber<CR>
-
-" \wa                 一键编译所有Vimwiki源文件
-imap <leader>wa <ESC>\ww<ESC>:VimwikiAll2HTML<CR>:qa<CR>
-nmap <leader>wa <ESC>\ww<ESC>:VimwikiAll2HTML<CR>:qa<CR>
-vmap <leader>wa <ESC>\ww<ESC>:VimwikiAll2HTML<CR>:qa<CR>
-
-" \ev                 编辑当前所使用的Vim配置文件
-nmap <leader>ev <ESC>:e $MYVIMRC<CR>
-
-" \mt                 在当前目录下递归生成tags文件
-nmap <leader>mt <ESC>:!ctags -R --languages=
-
-
-" ======= 编译 && 运行 && 模板 ======= "
-
-" 编译并运行
-func! Compile_Run_Code()
-    exec "w"
-    if &filetype == "c"
-        if g:isWIN
-            exec "!gcc -Wall -std=c11 -o %:r %:t && %:r.exe"
-        else
-            exec "!gcc -Wall -std=c11 -o %:r %:t && ./%:r"
-        endif
-    elseif &filetype == "cpp"
-        if g:isWIN
-            exec "!g++ -Wall -std=c++11 -o %:r %:t && %:r.exe"
-        else
-            exec "!g++ -Wall -std=c++11 -o %:r %:t && ./%:r"
-        endif
-    elseif &filetype == "d"
-        if g:isWIN
-            exec "!dmd -wi %:t && %:r.exe"
-        else
-            exec "!dmd -wi %:t && ./%:r"
-        endif
-    elseif &filetype == "go"
-        if g:isWIN
-            exec "!go build %:t && %:r.exe"
-        else
-            exec "!go build %:t && ./%:r"
-        endif
-    elseif &filetype == "rust"
-        if g:isWIN
-            exec "!rustc %:t && %:r.exe"
-        else
-            exec "!rustc %:t && ./%:r"
-        endif
-    elseif &filetype == "java"
-        exec "!javac %:t && java %:r"
-    elseif &filetype == "groovy"
-        exec "!groovy %:t"
-    elseif &filetype == "scala"
-        exec "!scala %:t"
-    elseif &filetype == "clojure"
-        exec "!clojure -i %:t"
-    elseif &filetype == "cs"
-        if g:isWIN
-            exec "!csc %:t && %:r.exe"
-        else
-            exec "!mono-csc %:t && ./%:r.exe"
-        endif
-    elseif &filetype == "fsharp"
-        if g:isWIN
-            exec "!fsc %:t && %:r.exe"
-        else
-            exec "!fsharpc %:t && ./%:r.exe"
-        endif
-    elseif &filetype == "scheme" || &filetype == "racket"
-        exec "!racket -fi %:t"
-    elseif &filetype == "lisp"
-        exec "!clisp -i %:t"
-    elseif &filetype == "ocaml"
-        if g:isWIN
-            exec "!ocamlc -o %:r.exe %:t && %:r.exe"
-        else
-            exec "!ocamlc -o %:r %:t && ./%:r"
-        endif
-    elseif &filetype == "haskell"
-        if g:isWIN
-            exec "!ghc -o %:r %:t && %:r.exe"
-        else
-            exec "!ghc -o %:r %:t && ./%:r"
-        endif
-    elseif &filetype == "lua"
-        exec "!lua %:t"
-    elseif &filetype == "perl"
-        exec "!perl %:t"
-    elseif &filetype == "php"
-        exec "!php %:t"
-    elseif &filetype == "python"
-        exec "!python %:t"
-    elseif &fjletype == "ruby"
-        exec "!ruby %:t"
-    elseif &filetype == "elixir"
-        exec j!elixir %:t"
-    elseif &filetype == "julia"
-        exec "!julia %:t"
-    elseif &filetype == "dart"
-        exec "!dart %:t"
-    elseif &filetype == "coffee"
-        exec "!coffee -c %:t && node %:r.js"
-    elseif &filetype == "typescript"
-        exec "!tsc %:t && node %:r.js"
-    elseif &filetype == "javascript"
-        exec "!node %:t"
-    elseif &filetype == "sh"
-        exec "!bash %:t"
-    endif
-endfunc
-
-" \R         一键保存、编译、运行
-imap <leader>R <ESC>:call Compile_Run_Code()<CR>
-nmap <leader>R :call Compile_Run_Code()<CR>
-vmap <leader>R <ESC>:call Compile_Run_Code()<CR>
-
-" \T         一键加载语法模板
-imap <leader>T <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
-nmap <leader>T :LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
-vmap <leader>T <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
-
-
-" ======= Vimwiki ======= "
-
-let g:vimwiki_w32_dir_enc     = 'utf-8' " 设置编码
-let g:vimwiki_use_mouse       = 1       " 使用鼠标映射
-let g:vimwiki_valid_html_tags = 'a,img,b,i,s,u,sub,sup,br,hr,div,del,code,red,center,left,right,h1,h2,h3,h4,h5,h6,pre,code,script,style'
-" 声明可以在wiki里面使用的HTML标签
-
-let blog = {}
-if g:atCompany
-    if g:isWIN
-        let blog.path          = 'G:/Ruchee/mysite/wiki/'
-        let blog.path_html     = 'G:/Ruchee/mysite/html/'
-        let blog.template_path = 'G:/Ruchee/mysite/templates/'
-    endif
-else
-    if g:isWIN
-        let blog.path          = 'D:/Ruchee/Files/mysite/wiki/'
-        let blog.path_html     = 'D:/Ruchee/Files/mysite/html/'
-        let blog.template_path = 'D:/Ruchee/Files/mysite/templates/'
-    else
-        let blog.path          = '~/mysite/wiki/'
-        let blog.path_html     = '~/mysite/html/'
-        let blog.template_path = '~/mysite/templates/'
-    endif
-endif
-let blog.template_default = 'site'
-let blog.template_ext     = '.html'
-let blog.auto_export      = 1
-
-let g:vimwiki_list = [blog]
-
-" 全屏模式
-map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>

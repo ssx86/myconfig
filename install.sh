@@ -9,4 +9,14 @@ cp .gitconfig ~/
 cp .vimrc ~/
 cp -r .vim ~/
 
-cp -r .emacs.d ~/
+
+# fzf
+clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+cd ~/.fzf
+./install
+cd ~
+
+# zsh
+# oh my zsh
+
+# tig 

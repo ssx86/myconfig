@@ -1,22 +1,32 @@
+# apt install
+sudo apt install -y tig vim tmux zsh 
+
+
+
 # shell config
-cp .zshrc ~/
 
 # software config
 cp .tmux.conf ~/
-cp .gitconfig ~/
 
 # editor config
 cp .vimrc ~/
-cp -r .vim ~/
+cp -rf .vim ~/
 
 
 # fzf
-clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-cd ~/.fzf
-./install
-cd ~
+read -p "Install fzf?(Y/n): " x
+if [ "$x" = "n" ];then
+  echo "Skip fzf install."
+else
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  cd ~/.fzf
+  ./install
+  cd ~
+fi
 
-# zsh
-# oh my zsh
+# oh-my-zsh
+git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+cp .zshrc ~/
+chsh -s $(which zsh)
+echo "Check git repo PATH in ~/.zshrc"
 
-# tig 

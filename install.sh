@@ -30,3 +30,7 @@ cp .zshrc ~/
 chsh -s $(which zsh)
 echo "Check git repo PATH in ~/.zshrc"
 
+# autojump
+git clone git://github.com/wting/autojump.git
+cd autojump
+./install.py

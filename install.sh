@@ -19,9 +19,9 @@ if [ "$x" = "n" ];then
   echo "Skip fzf install."
 else
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-  cd ~/.fzf
+  pushd ~/.fzf
   ./install
-  cd ~
+  popd ~
 fi
 
 # oh-my-zsh

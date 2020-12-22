@@ -1,0 +1,99 @@
+find_header: checking for float.h... -------------------- yes
+
+"x86_64-w64-mingw32-gcc -o conftest.exe -Id:/Ruby200-x64/include/ruby-2.0.0/x64-mingw32 -Id:/Ruby200-x64/include/ruby-2.0.0/ruby/backward -Id:/Ruby200-x64/include/ruby-2.0.0 -I. -DFD_SETSIZE=2048 -D_WIN32_WINNT=0x0501 -D_FILE_OFFSET_BITS=64   -O3 -fno-omit-frame-pointer -fno-fast-math -g -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration conftest.c  -L. -Ld:/Ruby200-x64/lib -L.      -lx64-msvcrt-ruby200  -lshell32 -lws2_32 -limagehlp -lshlwapi  "
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <winsock2.h>
+4: #include <windows.h>
+5: int main(int argc, char **argv)
+6: {
+7:   return 0;
+8: }
+/* end */
+
+"x86_64-w64-mingw32-gcc -E -Id:/Ruby200-x64/include/ruby-2.0.0/x64-mingw32 -Id:/Ruby200-x64/include/ruby-2.0.0/ruby/backward -Id:/Ruby200-x64/include/ruby-2.0.0 -I. -DFD_SETSIZE=2048 -D_WIN32_WINNT=0x0501 -D_FILE_OFFSET_BITS=64   -O3 -fno-omit-frame-pointer -fno-fast-math -g -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <winsock2.h>
+4: #include <windows.h>
+5: #include <float.h>
+/* end */
+
+--------------------
+
+find_header: checking for ruby.h... -------------------- yes
+
+"x86_64-w64-mingw32-gcc -E -Id:/Ruby200-x64/include/ruby-2.0.0/x64-mingw32 -Id:/Ruby200-x64/include/ruby-2.0.0/ruby/backward -Id:/Ruby200-x64/include/ruby-2.0.0 -I. -DFD_SETSIZE=2048 -D_WIN32_WINNT=0x0501 -D_FILE_OFFSET_BITS=64   -O3 -fno-omit-frame-pointer -fno-fast-math -g -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <winsock2.h>
+4: #include <windows.h>
+5: #include <ruby.h>
+/* end */
+
+--------------------
+
+find_header: checking for stdlib.h... -------------------- yes
+
+"x86_64-w64-mingw32-gcc -E -Id:/Ruby200-x64/include/ruby-2.0.0/x64-mingw32 -Id:/Ruby200-x64/include/ruby-2.0.0/ruby/backward -Id:/Ruby200-x64/include/ruby-2.0.0 -I. -DFD_SETSIZE=2048 -D_WIN32_WINNT=0x0501 -D_FILE_OFFSET_BITS=64   -O3 -fno-omit-frame-pointer -fno-fast-math -g -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <winsock2.h>
+4: #include <windows.h>
+5: #include <stdlib.h>
+/* end */
+
+--------------------
+
+find_header: checking for string.h... -------------------- yes
+
+"x86_64-w64-mingw32-gcc -E -Id:/Ruby200-x64/include/ruby-2.0.0/x64-mingw32 -Id:/Ruby200-x64/include/ruby-2.0.0/ruby/backward -Id:/Ruby200-x64/include/ruby-2.0.0 -I. -DFD_SETSIZE=2048 -D_WIN32_WINNT=0x0501 -D_FILE_OFFSET_BITS=64   -O3 -fno-omit-frame-pointer -fno-fast-math -g -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <winsock2.h>
+4: #include <windows.h>
+5: #include <string.h>
+/* end */
+
+--------------------
+
+have_header: checking for fcntl.h... -------------------- yes
+
+"x86_64-w64-mingw32-gcc -E -Id:/Ruby200-x64/include/ruby-2.0.0/x64-mingw32 -Id:/Ruby200-x64/include/ruby-2.0.0/ruby/backward -Id:/Ruby200-x64/include/ruby-2.0.0 -I. -DFD_SETSIZE=2048 -D_WIN32_WINNT=0x0501 -D_FILE_OFFSET_BITS=64   -O3 -fno-omit-frame-pointer -fno-fast-math -g -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <winsock2.h>
+4: #include <windows.h>
+5: #include <fcntl.h>
+/* end */
+
+--------------------
+
+have_header: checking for sys/errno.h... -------------------- no
+
+"x86_64-w64-mingw32-gcc -E -Id:/Ruby200-x64/include/ruby-2.0.0/x64-mingw32 -Id:/Ruby200-x64/include/ruby-2.0.0/ruby/backward -Id:/Ruby200-x64/include/ruby-2.0.0 -I. -DFD_SETSIZE=2048 -D_WIN32_WINNT=0x0501 -D_FILE_OFFSET_BITS=64   -O3 -fno-omit-frame-pointer -fno-fast-math -g -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  conftest.c -o conftest.i"
+conftest.c:5:23: fatal error: sys/errno.h: No such file or directory
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <winsock2.h>
+4: #include <windows.h>
+5: #include <sys/errno.h>
+/* end */
+
+--------------------
+
